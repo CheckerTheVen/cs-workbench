@@ -1,0 +1,15 @@
+C:\Entwicklung\Test\C#\Workbench\Workbench\bin\Debug\net6.0\Workbench.exe
+C:\Entwicklung\Test\C#\Workbench\Workbench\bin\Debug\net6.0\Workbench.deps.json
+C:\Entwicklung\Test\C#\Workbench\Workbench\bin\Debug\net6.0\Workbench.runtimeconfig.json
+C:\Entwicklung\Test\C#\Workbench\Workbench\bin\Debug\net6.0\Workbench.dll
+C:\Entwicklung\Test\C#\Workbench\Workbench\bin\Debug\net6.0\Workbench.pdb
+C:\Entwicklung\Test\C#\Workbench\Workbench\obj\Debug\net6.0\Workbench.csproj.AssemblyReference.cache
+C:\Entwicklung\Test\C#\Workbench\Workbench\obj\Debug\net6.0\Workbench.GeneratedMSBuildEditorConfig.editorconfig
+C:\Entwicklung\Test\C#\Workbench\Workbench\obj\Debug\net6.0\Workbench.AssemblyInfoInputs.cache
+C:\Entwicklung\Test\C#\Workbench\Workbench\obj\Debug\net6.0\Workbench.AssemblyInfo.cs
+C:\Entwicklung\Test\C#\Workbench\Workbench\obj\Debug\net6.0\Workbench.csproj.CoreCompileInputs.cache
+C:\Entwicklung\Test\C#\Workbench\Workbench\obj\Debug\net6.0\Workbench.dll
+C:\Entwicklung\Test\C#\Workbench\Workbench\obj\Debug\net6.0\refint\Workbench.dll
+C:\Entwicklung\Test\C#\Workbench\Workbench\obj\Debug\net6.0\Workbench.pdb
+C:\Entwicklung\Test\C#\Workbench\Workbench\obj\Debug\net6.0\Workbench.genruntimeconfig.cache
+C:\Entwicklung\Test\C#\Workbench\Workbench\obj\Debug\net6.0\ref\Workbench.dll
