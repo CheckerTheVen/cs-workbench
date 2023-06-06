@@ -5,6 +5,7 @@ This project serves as testing grounds for code, purely written in C#[^1].
 Currently testing:
 + Interfaces and inheritences
 + `Enumerable` interface
++ `Dictionary` interface
 + Constructors
 + Constructor overload
 + Optional parameters
