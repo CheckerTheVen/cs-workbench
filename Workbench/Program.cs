@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.ComponentModel.DataAnnotations;
-using System.Runtime.InteropServices;
 
 public class Coin
 {
