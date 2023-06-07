@@ -79,16 +79,20 @@ public class StoneLevels : IDictionary, IDictionaryEnumerator
 
     public StoneLevels(params DictionaryEntry[] collection)
     {
-        _Items = collection;
+        _Items = new DictionaryEntry[Count];
+        for (int i = 0; i < Count && i < collection.Length; i++)
+        {
+            _Items[i] = collection[i];
+        }
     }
 
     public object? this[object key] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-    public bool IsFixedSize { get { return false; } }
+    public bool IsFixedSize { get { return true; } }
 
     public bool IsReadOnly { get { return true; } }
 
-    public int Count { get { return _Items.Length; } }
+    public int Count { get { return 6; } }
 
     public bool IsSynchronized { get { return false; } }
 
