@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Net.Http.Headers;
 
 public class Coin
 {
@@ -193,17 +192,31 @@ public class StoneLevels : IDictionary, IDictionaryEnumerator
     }
 }
 
+public class Stone
+{
+    public string Name;
+    public Mineral MainMineral;
+}
+
+public class Mineral
+{
+    public string Name;
+}
+
 public class Program
 {
     public static void Main()
     {
-        Coin a = new Coin();
-        Coin b = new Coin(64);
+        Task t = new Task(new Action(DoWork));
 
-        Coin[] arr = { a, b };
+        t.Start();
+        t.Wait();
+    }
 
-        Coins coins = new Coins(arr);
-
-        Console.WriteLine(a + "\n\n" + b);
+    public static void DoWork()
+    {
+        Console.WriteLine("Task started.");
+        Thread.Sleep(2000);
+        Console.WriteLine("Task finished.");
     }
 }
