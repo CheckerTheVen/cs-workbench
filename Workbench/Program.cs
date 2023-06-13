@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Data;
 
 public class Coin
 {
@@ -195,28 +196,55 @@ public class StoneLevels : IDictionary, IDictionaryEnumerator
 public class Stone
 {
     public string Name;
-    public Mineral MainMineral;
+    public Mineral? Mineral;
+
+    public Stone(string name = "", Mineral? mineral = null)
+    {
+        Name = name;
+        Mineral = mineral;
+    }
 }
 
 public class Mineral
 {
     public string Name;
+
+    public Mineral(string name = "")
+    {
+        Name = name;
+    }
 }
 
 public class Program
 {
     public static void Main()
     {
-        Task t = new Task(new Action(DoWork));
+        // Creating a DataTable for Stone.
+        DataTable stones = new DataTable("Stone");
+        stones.Columns.Add(new DataColumn() { ColumnName = "Name", DataType = typeof(string) });
+        stones.Columns.Add(new DataColumn() { ColumnName = "Mineral", DataType = typeof(Mineral) });
 
-        t.Start();
-        t.Wait();
-    }
+        // Creating a DataTable for Minerals
+        DataTable minerals = new DataTable("Mineral");
+        minerals.Columns.Add(new DataColumn() { ColumnName = "Name", DataType = typeof(string) });
 
-    public static void DoWork()
-    {
-        Console.WriteLine("Task started.");
-        Thread.Sleep(2000);
-        Console.WriteLine("Task finished.");
+        // Presetting some information.
+        string[] presetMinerals = { "Silica", "Quartz" };
+        string[] presetStones = { "Diorite", "Andesite", "Granite", "Basalt" };
+
+        // Filling the information into the DataTables.
+        foreach (string currentMineral in presetMinerals)
+        {
+            DataRow current = minerals.NewRow();
+            current["Name"] = currentMineral;
+            minerals.Rows.Add(current);
+        }
+
+        foreach (string currentStone in presetStones)
+        {
+            DataRow current = stones.NewRow();
+            current["Name"] = currentStone;
+            stones.Rows.Add(current);
+        }
     }
 }

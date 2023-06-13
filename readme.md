@@ -15,5 +15,7 @@ Currently testing:
 
 + Multi-threading
 + `Task` class
+
++ LINQ in `DataSet`
 	
 [^1]: The code needs to be built and compiled first, as there are no binaries included.
