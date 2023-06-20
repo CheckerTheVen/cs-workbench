@@ -1,250 +1,84 @@
 ﻿using System.Collections;
 using System.Data;
 
-public class Coin
-{
-    public int Value = -1;
-
-    public Coin(int value = 0)
-    {
-        if (value < 0)
-        {
-            throw new ArgumentException("\"value\" must not be smaller than zero.");
-        }
-
-        this.Value = value;
-    }
-}
-
-public class Coins : IEnumerator, IEnumerable
-{
-
-    private Coin[] _Coins;
-
-    public Coins(Coin single)
-    {
-        _Coins = new Coin[1];
-        _Coins[0] = single;
-    }
-
-    public Coins(params Coin[] collection)
-    {
-        _Coins = collection;
-    }
-
-    public void Insert(Coin single)
-    {
-        _Coins.Append(single);
-    }
-
-    public void Insert(params Coin[] collection)
-    {
-        foreach (Coin single in collection)
-        {
-            Insert(single);
-        }
-    }
-
-    private int _Position = -1;
-
-	public object Current { get { return _Coins[_Position]; } }
-
-	public IEnumerator GetEnumerator()
-	{
-		return this;
-	}
-
-	public bool MoveNext()
-	{
-		_Position++;
-        return (_Position < _Coins.Length);
-	}
-
-	public void Reset()
-	{
-        _Position = -1;
-	}
-}
-
-public class StoneLevels : IDictionary, IDictionaryEnumerator
-{
-    public enum StoneLevel
-    {
-        Frequent, Uncommon, Rare, Unique
-    }
-
-    private DictionaryEntry[] _Items;
-
-    private int _Position = -1;
-
-    public StoneLevels(params DictionaryEntry[] collection)
-    {
-        _Items = new DictionaryEntry[Count];
-        for (int i = 0; i < Count && i < collection.Length; i++)
-        {
-            _Items[i] = collection[i];
-        }
-    }
-
-    public object? this[object key] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-    public bool IsFixedSize { get { return true; } }
-
-    public bool IsReadOnly { get { return true; } }
-
-    public int Count { get { return 6; } }
-
-    public bool IsSynchronized { get { return false; } }
-
-    public object SyncRoot { get { throw new NotImplementedException(); } }
-
-    public ICollection Keys
-    {
-        get
-        {
-            object[] keys = new object[_Items.Length - 1];
-
-            for (int current = 0; _Items.GetEnumerator().MoveNext(); current++)
-            {
-                keys[current] = _Items[current].Key;
-            }
-
-            return keys;
-        }
-    }
-
-    public ICollection Values
-    {
-        get
-        {
-            object[] values = new object[_Items.Length - 1];
-
-            for (int current = 0; _Items.GetEnumerator().MoveNext(); current++)
-            {
-                values[current] = _Items[current].Value;
-            }
-
-            return values;
-        }
-    }
-
-    public DictionaryEntry Entry { get { return _Items[_Position]; } }
-
-    public object Key { get { return _Items[_Position].Key; } }
-
-    public object? Value { get { return _Items[_Position].Value; } }
-
-    public object Current { get { return _Items[_Position]; } }
-
-    public void Add(object key, object? value)
-    {
-        // TODO Check for correct types.
-
-        _Items.Append(new DictionaryEntry(key, value));
-    }
-
-    public void Clear()
-    {
-        return;
-    }
-
-    public bool Contains(object key)
-    {
-        foreach (DictionaryEntry element in _Items)
-        {
-            if (element.Key.Equals(Key))
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public void CopyTo(Array array, int index)
-    {
-        return;
-    }
-
-    public IDictionaryEnumerator GetEnumerator()
-    {
-        return this;
-    }
-
-    public void Remove(object key)
-    {
-        return;
-    }
-
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return this;
-    }
-
-    public bool MoveNext()
-    {
-        _Position++;
-        return (_Position < _Items.Length);
-    }
-
-    public void Reset()
-    {
-        _Position = -1;
-    }
-}
-
-public class Stone
+public class Rock
 {
     public string Name;
-    public Mineral? Mineral;
-
-    public Stone(string name = "", Mineral? mineral = null)
-    {
-        Name = name;
-        Mineral = mineral;
-    }
-}
-
-public class Mineral
-{
-    public string Name;
-
-    public Mineral(string name = "")
-    {
-        Name = name;
-    }
+    public double Density;
+    public List<string> Minerals;
 }
 
 public class Program
 {
     public static void Main()
     {
-        // Creating a DataTable for Stone.
-        DataTable stones = new DataTable("Stone");
-        stones.Columns.Add(new DataColumn() { ColumnName = "Name", DataType = typeof(string) });
-        stones.Columns.Add(new DataColumn() { ColumnName = "Mineral", DataType = typeof(Mineral) });
-
-        // Creating a DataTable for Minerals
-        DataTable minerals = new DataTable("Mineral");
-        minerals.Columns.Add(new DataColumn() { ColumnName = "Name", DataType = typeof(string) });
-
-        // Presetting some information.
-        string[] presetMinerals = { "Silica", "Quartz" };
-        string[] presetStones = { "Diorite", "Andesite", "Granite", "Basalt" };
-
-        // Filling the information into the DataTables.
-        foreach (string currentMineral in presetMinerals)
+        Rock[] rocks =
         {
-            DataRow current = minerals.NewRow();
-            current["Name"] = currentMineral;
-            minerals.Rows.Add(current);
-        }
+            new Rock
+            {
+                Name = "Limestone",
+                Density = 2.5,
+                Minerals = new List<string>{ "Calcite", "Clay", "Quartz", "Sand", "Silt" }
+            },
+            new Rock
+            {
+                Name = "Chalk",
+                Density = 2.5,
+                Minerals = new List<string>{ "Calcite", "Clay", "Quartz", "Sand" }
+            },
+            new Rock
+            {
+                Name = "Marble",
+                Density = 2.6,
+                Minerals = new List<string>{ "Graphite", "Quartz" }
+            },
+            new Rock
+            {
+                Name = "Quartzite",
+                Density = 2.4,
+                Minerals = new List<string>{ "Chlorite", "Magnetite", "Quartz"}
+            },
+            new Rock
+            {
+                Name = "Anthracite",
+                Density = 1.7,
+                Minerals = new List<string>{ "Calcite", "Clay" }
+            },
+            new Rock
+            {
+                Name = "Diorite",
+                Density = 2.5,
+                Minerals = new List<string>{ "Magnetite", "Quartz", "Sulfides", "Pyroxene" }
+            },
+            new Rock
+            {
+                Name = "Obsidian",
+                Density = 2.6,
+                Minerals = new List<string>{  }
+            },
+            new Rock
+            {
+                Name = "Basalt",
+                Density = 3.0,
+                Minerals = new List<string>{ "Pyroxene" }
+            },
+            new Rock
+            {
+                Name = "Harzburgite",
+                Density = 2.5,
+                Minerals = new List<string>{ "Chromite", "Pyroxene", "Magnesium" }
+            },
+        };
 
-        foreach (string currentStone in presetStones)
+        var query = rocks.AsEnumerable().Where((rock) => rock.Density < 2.5 ).SelectMany(rock => rock.Minerals, (rock, minerals) => new
         {
-            DataRow current = stones.NewRow();
-            current["Name"] = currentStone;
-            stones.Rows.Add(current);
+            Mineral = minerals,
+            Rock = rock.Name
+        });
+
+        foreach (var result in query)
+        {
+            Console.WriteLine(result.Mineral + " is found in " + result.Rock);
         }
     }
 }
