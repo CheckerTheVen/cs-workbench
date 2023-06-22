@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Runtime.InteropServices;
 
 public class Rock
 {
@@ -163,19 +164,22 @@ public class Program
             }
         };
 
-        var containQuartz = rocks.AsEnumerable()
-            .Where((allRocks) => allRocks.Minerals.Contains("Quartz"));
+        // Defines a selection of rocks that contain Quartz.
+        var rocksQuartz = rocks.AsEnumerable()
+            .Where(rock => rock.Minerals.Contains("Quartz"));
 
-        var highDensity = rocks.AsEnumerable()
-            .Where((allRocks) => allRocks.Density > 2.5);
+        // Defines a selection of rocks that have at least a certain density.
+        var rocksHighDensity = rocks.AsEnumerable()
+            .Where(rock => rock.Density > 2.5);
 
-        var longName = rocks.AsEnumerable()
-            .Where((allRocks) => allRocks.Name.EndsWith("ite"));
+        // Defines a selection of rocks that end with 'ite'.
+        var rocksLongName = rocks.AsEnumerable()
+            .Where(rock => rock.Name.EndsWith("ite"));
 
-        var query = new List<Rock>().AsEnumerable()
-            .Union(containQuartz)
-            .Intersect(highDensity);
+        // Defines a selection of all available materials.
+        var minerals = rocks.AsEnumerable()
+            .SelectMany(mineral => mineral.Minerals, (rock, mineral) => mineral).Distinct();
 
-        Console.WriteLine("Rocks that contain Quartz and possess high density (>2.5g/cm³)\n\n" + string.Concat(query.Select(rocks => rocks.Name + " ")));
+        Console.WriteLine(string.Join("\n", minerals));
     }
 }
