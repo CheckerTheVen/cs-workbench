@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Data;
+﻿using System.Data;
 
 public class Rock
 {
     public string Name;
-    public double Density;
+    public string Type;
     public List<string> Minerals;
+    public double Density;
 }
 
 public class Program
@@ -16,69 +16,166 @@ public class Program
         {
             new Rock
             {
-                Name = "Limestone",
-                Density = 2.5,
-                Minerals = new List<string>{ "Calcite", "Clay", "Quartz", "Sand", "Silt" }
-            },
-            new Rock
-            {
-                Name = "Chalk",
-                Density = 2.5,
-                Minerals = new List<string>{ "Calcite", "Clay", "Quartz", "Sand" }
-            },
-            new Rock
-            {
-                Name = "Marble",
-                Density = 2.6,
-                Minerals = new List<string>{ "Graphite", "Quartz" }
-            },
-            new Rock
-            {
-                Name = "Quartzite",
-                Density = 2.4,
-                Minerals = new List<string>{ "Chlorite", "Magnetite", "Quartz"}
-            },
-            new Rock
-            {
                 Name = "Anthracite",
-                Density = 1.7,
-                Minerals = new List<string>{ "Calcite", "Clay" }
+                Type = "Sedimentary",
+                Minerals = new List<string>{ "Calcite", "Clay" },
+                Density = 2.5
+            },
+            new Rock
+            {
+                Name = "Flint",
+                Type = "Sedimentary",
+                Minerals = new List<string>{ "Silicon" },
+                Density = 2.7
+            },
+            new Rock
+            {
+                Name = "Limestone",
+                Type = "Sedimentary",
+                Minerals = new List<string>{ "Calcite", "Clay", "Quartz", "Sand", "Silt" },
+                Density = 2.3
+            },
+            new Rock
+            {
+                Name = "Coal",
+                Type = "Sedimentary",
+                Minerals = new List<string>{ "Calcite", "Chloride", "Chromide", "Clay", "Pyrite", "Quartz" },
+                Density = 1.2
+            },
+            new Rock
+            {
+                Name = "Siltstone",
+                Type = "Sedimentary",
+                Minerals = new List<string>{ "Calcite", "Clay", "Quartz", "Sand", "Silt" },
+                Density = 2.7
             },
             new Rock
             {
                 Name = "Diorite",
-                Density = 2.5,
-                Minerals = new List<string>{ "Magnetite", "Quartz", "Sulfides", "Pyroxene" }
+                Type = "Igneous",
+                Minerals = new List<string>{ "Magnetite", "Pyroxene", "Quartz", "Sulfides" },
+                Density = 3.0
             },
             new Rock
             {
-                Name = "Obsidian",
-                Density = 2.6,
-                Minerals = new List<string>{  }
+                Name = "Gabbro",
+                Type = "Igneous",
+                Minerals = new List<string>{ "Pyroxene" },
+                Density = 3.2
+            },
+            new Rock
+            {
+                Name = "Andesite",
+                Type = "Igneous",
+                Minerals = new List<string>{ "Magnetite", "Pyroxene" },
+                Density = 2.2
+            },
+            new Rock
+            {
+                Name = "Granite",
+                Type = "Igenous",
+                Minerals = new List<string>{ "Pyroxene", "Quartz" },
+                Density = 2.7
+            },
+            new Rock
+            {
+                Name = "Rhyolite",
+                Type = "Igneous",
+                Minerals = new List<string>{ "Pyroxene", "Quartz" },
+                Density = 2.5
+            },
+            new Rock
+            {
+                Name = "Pyrolite",
+                Type = "Igneous",
+                Minerals = new List<string>{ "Chromite", "Magnesium", "Pyroxene" },
+                Density = 3.3
             },
             new Rock
             {
                 Name = "Basalt",
-                Density = 3.0,
-                Minerals = new List<string>{ "Pyroxene" }
+                Type = "Igneous",
+                Minerals = new List<string>{ "Pyroxene" },
+                Density = 3.0
             },
             new Rock
             {
-                Name = "Harzburgite",
-                Density = 2.5,
-                Minerals = new List<string>{ "Chromite", "Pyroxene", "Magnesium" }
+                Name = "Obsidian",
+                Type = "Igneous",
+                Minerals = new List<string>{  },
+                Density = 2.6
             },
+            new Rock
+            {
+                Name = "Theralite",
+                Type = "Igneous",
+                Minerals = new List<string>{ "Pyroxene" },
+                Density = 2.7
+            },
+            new Rock
+            {
+                Name = "Anorthosite",
+                Type = "Igneous",
+                Minerals = new List<string>{ "Magnetite" },
+                Density = 3.7
+            },
+            new Rock
+            {
+                Name = "Marble",
+                Type = "Metamorphic",
+                Minerals = new List<string>{ "Graphite", "Pyrite", "Quartz" },
+                Density = 2.7
+            },
+            new Rock
+            {
+                Name = "Slate",
+                Type = "Metamorphic",
+                Minerals = new List<string>{ "Chlorite", "Graphite", "Magnetite", "Pyrite" },
+                Density = 2.7
+            },
+            new Rock
+            {
+                Name = "Tuff",
+                Type = "Igneous",
+                Minerals = new List<string>{ "Calcite", "Chlorite" },
+                Density = 1.3
+            },
+            new Rock
+            {
+                Name = "Shale",
+                Type = "Sedimentary",
+                Minerals = new List<string>{ "Calcite", "Chlorite", "Pyrite", "Quartz", "Silica", "Sulfides" },
+                Density = 2.5
+            },
+            new Rock
+            {
+                Name = "Sandstone",
+                Type = "Sedimentary",
+                Minerals = new List<string>{ "Calcite", "Clay", "Quartz" },
+                Density = 2.2
+            },
+            new Rock
+            {
+                Name = "Chalk",
+                Type = "Sedimentary",
+                Minerals = new List<string>{ "Calcite", "Clay", "Quartz", "Sand" },
+                Density = 2.5
+            }
         };
 
-        var query = rocks.AsEnumerable().Where((rock) => rock.Density < 2.5 ).SelectMany(rock => rock.Minerals, (rock, minerals) => new
-        {
-            Mineral = minerals,
-            Rock = rock.Name
-        });
+        var containQuartz = rocks.AsEnumerable()
+            .Where((allRocks) => allRocks.Minerals.Contains("Quartz"));
 
-        foreach (var result in query)
-        {
-            Console.WriteLine(result.Mineral + " is found in " + result.Rock);
-        }
+        var highDensity = rocks.AsEnumerable()
+            .Where((allRocks) => allRocks.Density > 2.5);
+
+        var longName = rocks.AsEnumerable()
+            .Where((allRocks) => allRocks.Name.EndsWith("ite"));
+
+        var query = new List<Rock>().AsEnumerable()
+            .Union(containQuartz)
+            .Intersect(highDensity);
+
+        Console.WriteLine("Rocks that contain Quartz and possess high density (>2.5g/cm³)\n\n" + string.Concat(query.Select(rocks => rocks.Name + " ")));
     }
 }
