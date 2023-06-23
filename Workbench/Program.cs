@@ -178,8 +178,17 @@ public class Program
 
         // Defines a selection of all available materials.
         var minerals = rocks.AsEnumerable()
-            .SelectMany(mineral => mineral.Minerals, (rock, mineral) => mineral).Distinct();
+            .SelectMany(mineral => mineral.Minerals, (rock, mineral) => new
+            {
+                Name = rock.Name,
+                Mineral = mineral
+            });
 
-        Console.WriteLine(string.Join("\n", minerals));
+        var query = new List<Rock>().AsEnumerable()
+            .Union(rocksQuartz)
+            .Intersect(rocksHighDensity)
+            .Except(rocksLongName);
+
+        Console.WriteLine(string.Join("\n", query.Select(rock => rock.Name)));
     }
 }
